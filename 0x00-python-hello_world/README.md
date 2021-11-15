@@ -1,0 +1,1 @@
+New to Python?Me too!Let's print "Hello World" though,can't be so complex
