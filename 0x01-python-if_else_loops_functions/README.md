@@ -1,0 +1,1 @@
+Let's loop in Python lol!If and elif,not bad at all
