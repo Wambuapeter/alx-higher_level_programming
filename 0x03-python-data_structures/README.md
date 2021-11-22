@@ -1,0 +1,1 @@
+We are going to study lists and tuples in Python,wow!
