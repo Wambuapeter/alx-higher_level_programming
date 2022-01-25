@@ -9,7 +9,7 @@ class Square:
         args:
         size(of type int).
         '''
-        self.__size = size
+        self.size = size
 
         @property
         def size(self):
