@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 '''defines a rectangle with width and height
-raises exceptions
+raises exceptions.
 '''
 
 
 class Rectangle:
-    '''defines a rectangle'''
+    '''defines a rectangle.'''
     def __init__(self, width=0, height=0):
-        '''initializes the rectangle
+        '''initializes the rectangle.
         Args:
-            width: width of the rectangle
-            height: height of the rectangle
+            width: width of the rectangle.
+            height: height of the rectangle.
         '''
         self.width = width
         self.height = height
@@ -21,7 +21,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        '''sets the width of the rectangle'''
+        '''sets the width of the rectangle.'''
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if (height < 0):
