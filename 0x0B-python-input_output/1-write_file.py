@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""writes on a text file"""
+"""a function that writes a string to a file"""
 
 
 def write_file(filename="", text=""):
-    """write and return length of string written"""
-     with open(filename, mode='w', encoding='utf-8') as f:
+    """writes a string to a file,returns the number of characters written"""
+    with open(filename, mode='w', encoding='utf-8') as f:
         return f.write(text)
