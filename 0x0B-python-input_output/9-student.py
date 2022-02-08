@@ -4,8 +4,11 @@
 
 class Student:
     """
-    defines a student by
-    public instance attributes(first_name, last_name, age):
+    defines a student by:
+    Public instance attributes:
+        first_name
+        last_name
+        age
     """
 
     def __init__(self, first_name, last_name, age):
