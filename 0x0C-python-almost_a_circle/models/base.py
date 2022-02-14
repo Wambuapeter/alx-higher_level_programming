@@ -10,7 +10,7 @@ import os
 
 
 class Base:
-    
+
     """private class attribute __nb_objects = 0"""
     """class constructor: def __init__(self, id=None)"""
 
@@ -19,7 +19,7 @@ class Base:
     def __init__(self, id=None):
         '''initializes the class'''
         if id is not None:
-            self.id = id    
+            self.id = id
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
@@ -27,49 +27,52 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         '''returns json string rep of a list of dictionaries'''
-        if (list_dictionaries is None or len(list_dictionaries) == 0):
-            return ("[]")
-        return json.dumps(list_dictionaries)
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
         '''writes json rep to a file'''
         filename = cls.__name__ + '.json'
-        with open(filename, mode='w' encoding='utf-8') as myFile:
+        with open(filename, mode='w', encoding='utf-8') as f:
             new_list = []
             if list_objs is None:
-                myFile.write(cls.to_json_string(new_list))
+                f.write(cls.to_json_string(new_list))
             else:
                 for obj in list_objs:
-                    new_list.append(obj.to_json_string())
-                myFile.write(cls.to_json_string(new_list))
+                    new_list.append(obj.to_dictionary())
+                f.write(cls.to_json_string(new_list))
 
     @staticmethod
     def from_json_string(json_string):
         '''returns list of json string representation'''
-        if json_string is None or len(json_string):
+        """ return the list of the JSON string representation json_string"""
+        if json_string is None or len(json_string) == 0:
             return []
+
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
         '''returns an instance with all attributes set'''
-        dummy_instance = cls(2, 3, 4, 5)
-        clas.update(dummy_instance, **dictionary)
-        return dummy_instance
+        dummy_inst = cls(1, 2, 3, 4)
+        cls.update(dummy_inst, **dictionary)
+        return dummy_inst
 
     @classmethod
     def load_from_file(cls):
         '''returns a list of insatnces'''
-        instance_list = []
+        inst_list = []
         filename = cls.__name__ + '.json'
         if os.path.exists(filename) is False:
-            return instance_list
-        with open(filename, mode='w', encoding='utf-8') as myFile:
-            objs = cls.from_json_string(myFile.read())
+            return inst_list
+        with open(filename, mode='r', encoding='utf-8') as f:
+            objs = cls.from_json_string(f.read())
             for obj in objs:
-                instance_list.append(cls.create(**obj))
-            return instance_list
+                inst_list.append(cls.create(**obj))
+            return inst_list
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
