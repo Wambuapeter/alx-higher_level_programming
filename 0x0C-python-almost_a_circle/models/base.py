@@ -1,27 +1,33 @@
 #!/usr/bin/python3
 
 
+'''base of all my classes in the project'''
+
+
 import csv
 import json
 import os
 
 
 class Base:
-    '''base of all my classes in the project'''
+    
+    """private class attribute __nb_objects = 0"""
+    """class constructor: def __init__(self, id=None)"""
 
     __nb_objects = 0
 
     def __init__(self, id=None):
         '''initializes the class'''
-        if self.id is not None:
-            Base. __nb_objects += 1
+        if id is not None:
+            self.id = id    
         else:
-            self.id = id
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
         '''returns json string rep of a list of dictionaries'''
-        if (list_dictionaries is None or len(list_dictionaries == 0)):
+        if (list_dictionaries is None or len(list_dictionaries) == 0):
             return ("[]")
         return json.dumps(list_dictionaries)
 
