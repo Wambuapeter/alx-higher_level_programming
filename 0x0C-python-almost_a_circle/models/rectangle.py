@@ -19,7 +19,7 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """get width"""
+        """ get width"""
         return self.__width
 
     @width.setter
@@ -33,12 +33,13 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """get height"""
+        """ get value """
+
         return self.__height
 
     @height.setter
     def height(self, height):
-        """set height"""
+        """set value"""
         if type(height) is not int:
             raise TypeError("height must be an integer")
         if height <= 0:
@@ -47,12 +48,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """get x"""
+        """ get value """
         return self.__x
 
     @x.setter
-    def x(self, value):
-        """set x"""
+    def x(self, x):
+        """set value"""
         if type(x) is not int:
             raise TypeError("x must be an integer")
         if x < 0:
@@ -61,12 +62,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """get y"""
+        """ get value """
         return self.__y
 
     @y.setter
-    def y(self, value):
-        """set y"""
+    def y(self, y):
+        """set value"""
         if type(y) is not int:
             raise TypeError("y must be an integer")
         if y < 0:
@@ -74,11 +75,11 @@ class Rectangle(Base):
         self.__y = y
 
     def area(self):
-        """returns area value of the Rectangle instance"""
-        return (self.width * self.height)
+        """area of rectangle instance"""
+        return self.width * self.height
 
     def display(self):
-        """prints in stdout the rectangle instance with #"""
+        """prints in stdout the Rectangle instance with #"""
         print('\n' * self.__y, end='')
 
         for i in range(self.height):
@@ -87,23 +88,23 @@ class Rectangle(Base):
 
     def __str__(self):
         """returns some specified value"""
-        return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
+        return "[Rectangle] ({}) {}/{} - {}/{}" .format(
             self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """updates the private attributes"""
-        rect_attr = [id, width, height, x, y]
+        rectangle_attrs = ["id", "width", "height", "x", "y"]
         if args is None or len(args) == 0:
-            for key, value in kwargs.items():
-                if key in rect_attr:
-                    setattr(self, key, value)
+            for k, v in kwargs.items():
+                if k in rectangle_attrs:
+                    setattr(self, k, v)
         else:
             for i in range(len(args)):
-                setattr(self, rect_attr[i], args[i])
+                setattr(self, rectangle_attrs[i], args[i])
 
     def to_dictionary(self):
-        """returns dictionary representation of the reactangle"""
-        rect_dict = {'id': self.id, 'width': self.__width,
-                     'height': self.__height,
-                     'x': self.__x, 'y': self.__y}
-        return rect_dict
+        """return a dictionary of the rectangle"""
+        rectangle_dict = {'id': self.id, 'width': self.__width,
+                          'height': self.__height,
+                          'x': self.__x, 'y': self.__y}
+        return rectangle_dict
