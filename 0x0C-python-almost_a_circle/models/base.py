@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 
+"""This class will be the base of all other classes in this project."""
 
-'''base of all my classes in the project'''
-
-
-import csv
-import json
 import os
+import json
 
 
 class Base:
@@ -17,7 +14,10 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
-        '''initializes the class'''
+
+        """if id is not None, assign the public instance attribute id """
+        """with this argument value, otherwise, increment __nb_objects"""
+        """and assign the new value to the public instance attribute id"""
         if id is not None:
             self.id = id
         else:
@@ -26,7 +26,8 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        '''returns json string rep of a list of dictionaries'''
+
+        """return the JSON string representation of list_dictionaries"""
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         else:
@@ -34,7 +35,8 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        '''writes json rep to a file'''
+
+        """write the JSON string representation of list_objs to a file"""
         filename = cls.__name__ + '.json'
         with open(filename, mode='w', encoding='utf-8') as f:
             new_list = []
@@ -47,7 +49,6 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        '''returns list of json string representation'''
         """ return the list of the JSON string representation json_string"""
         if json_string is None or len(json_string) == 0:
             return []
@@ -56,14 +57,14 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        '''returns an instance with all attributes set'''
+        """returns an instance with all attributes already set"""
         dummy_inst = cls(1, 2, 3, 4)
         cls.update(dummy_inst, **dictionary)
         return dummy_inst
 
     @classmethod
     def load_from_file(cls):
-        '''returns a list of insatnces'''
+        """returns a list of instances"""
         inst_list = []
         filename = cls.__name__ + '.json'
         if os.path.exists(filename) is False:
@@ -73,40 +74,3 @@ class Base:
             for obj in objs:
                 inst_list.append(cls.create(**obj))
             return inst_list
-
-    @classmethod
-    def save_to_file_csv(cls, list_objs):
-        '''serializes in CSV'''
-        filename = cls.__name__ + ".csv"
-        with open(filename, mode='r') as csvfile:
-            csv_writer = csv.writer(csvfile)
-            if cls.__name__ is "Rectangle":
-                for obj in list_objs:
-                    csv_writer.writerow([obj.id, obj.width, obj.height,
-                                         obj.x, obj.y])
-            elif cls.__name__ = "Square":
-                csv_writer.writerow([obj.id, obj.size, obj.x, obj.y])
-
-    @classmethod
-    def load_from_file_csv(cls):
-        '''deserializes in csv'''
-        filename = cls.__name__ + ".csv"
-        myList = []
-        try:
-            with open(filename, mode='r') as csvfile:
-                csv_reader = csv.reader(csvfile)
-                for args in csv_reader:
-                    if cls.__name__ is "Rectangle":
-                        dictionary = {"id": int(args[0]),
-                                      "width": int(args[1]),
-                                      "height": int(args[2]),
-                                      "x": int(args[3]),
-                                      "y": int(args[4])}
-                    elif cls.__name__ is "Square":
-                        dictionary = {"id": int(args[0]), "size": int(args[1]),
-                                      "x": int(args[2]), "y": int(args[3])}
-                    obj = cls.create(**dictionary)
-                    myList.append(obj)
-        except:
-            pass
-        return myList
