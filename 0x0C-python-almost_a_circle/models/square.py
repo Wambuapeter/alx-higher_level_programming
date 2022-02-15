@@ -38,8 +38,8 @@ class Square(Rectangle):
         """updates the private attribute"""
         square_attrs = ["id", "size", "x", "y"]
         if args is None or len(args) == 0:
-            for k, v in kwargs.items():
-                setattr(self, k, v)
+            for key, value in kwargs.items():
+                setattr(self, key, value)
         else:
             for i in range(len(args)):
                 setattr(self, square_attrs[i], args[i])

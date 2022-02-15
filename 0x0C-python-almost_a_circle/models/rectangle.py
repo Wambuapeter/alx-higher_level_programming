@@ -93,18 +93,18 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """updates the private attributes"""
-        rectangle_attrs = ["id", "width", "height", "x", "y"]
+        rect_attrs = ["id", "width", "height", "x", "y"]
         if args is None or len(args) == 0:
-            for k, v in kwargs.items():
-                if k in rectangle_attrs:
-                    setattr(self, k, v)
+            for key, value in kwargs.items():
+                if key in rect_attrs:
+                    setattr(self, key, value)
         else:
             for i in range(len(args)):
-                setattr(self, rectangle_attrs[i], args[i])
+                setattr(self, rect_attrs[i], args[i])
 
     def to_dictionary(self):
         """return a dictionary of the rectangle"""
-        rectangle_dict = {'id': self.id, 'width': self.__width,
+        rect_dict = {'id': self.id, 'width': self.__width,
                           'height': self.__height,
                           'x': self.__x, 'y': self.__y}
-        return rectangle_dict
+        return rect_dict
