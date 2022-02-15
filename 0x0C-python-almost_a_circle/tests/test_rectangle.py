@@ -4,8 +4,12 @@
 import unittest
 import inspect
 import json
+
+
 from models import rectangle
 from models import base
+
+
 Base = base.Base
 Rectangle = rectangle.Rectangle
 

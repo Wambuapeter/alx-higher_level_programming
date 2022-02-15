@@ -4,8 +4,12 @@
 import unittest
 import inspect
 import json
+
+
 from models import square
 from models import Base
+
+
 Square = square.Square
 
 
